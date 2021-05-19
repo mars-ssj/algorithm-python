@@ -1,10 +1,14 @@
+'''实现01背包问题'''
 class Knapsack(object):
-
+    
     def __init__(self) -> None:
         super().__init__()
         self.max_weight = -1
+    
+    def solution(self, weights, w):
+        self.solution_action(0, 0, w, weights, len(w))
 
-    def dp(self, cn, cw, w, weights, n):
+    def solution_action(self, cn, cw, w, weights, n):
         '''
             w: 背包容纳重量
             cw: 当前重量
