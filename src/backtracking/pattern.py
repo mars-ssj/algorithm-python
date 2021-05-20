@@ -1,3 +1,4 @@
+'''正则表达式匹配'''
 class Pattern(object):
 
     def __init__(self, pattern) -> None:

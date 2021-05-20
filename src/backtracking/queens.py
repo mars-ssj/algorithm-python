@@ -1,3 +1,4 @@
+'''八皇后问题'''
 class Queens(object):
 
     def __init__(self) -> None:

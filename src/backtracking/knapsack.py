@@ -4,8 +4,11 @@ class Knapsack(object):
     def __init__(self) -> None:
         super().__init__()
         self.max_weight = -1
+        self.has_computed = [] # 优化，已经计算过的，记录下来
     
     def solution(self, weights, weight_limit):
+        for _ in range(len(weights)):
+            self.has_computed.append([False for _ in range(weight_limit+1)])
         self.action(0, 0, weight_limit, weights, len(weights))
 
     def action(self, cn, cw, w, weights, n):
@@ -20,6 +23,9 @@ class Knapsack(object):
             if cw > self.max_weight:
                 self.max_weight = cw
             return
+        if self.has_computed[cn][cw]:
+            return
+        self.has_computed[cn][cw] = True
         self.action(cn+1, cw, w, weights, n)
         if cw + weights[cn] <= w:
             self.action(cn+1, cw+weights[cn], w, weights, n)
