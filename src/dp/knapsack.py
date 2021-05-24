@@ -15,9 +15,9 @@ class Knapsack(object):
             for j in range(0, weight_limit+1):
                 if states[i-1][j]:
                     states[i][j] = True
-                    if j + weights[i] <= weight_limit:
-                        states[i][j+weights[i]] = True
-        
+            for j in range(0, weight_limit-weights[i]+1):
+                if states[i-1][j]:
+                    states[i][j+weights[i]] = True
         for k in range(weight_limit, -1, -1):
             if states[n-1][k]:
                 return k
@@ -56,7 +56,7 @@ class Knapsack(object):
                     states[i][j] = states[i-1][j]
                     if j + weights[i] <= weight_limit:
                         cv = states[i-1][j] + values[i]
-                        print(cv)
+                        print(states)
                         if cv > states[i][j+weights[i]]:
                             states[i][j+weights[i]] = cv
             
